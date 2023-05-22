@@ -55,7 +55,7 @@ class _CoursebyidState extends State<Coursebyid> {
             eText1("${widget.title} course", mqueryHeight(context, .025),
                 fontweight: FontWeight.w900, color: ethcolor.headingblack),
             sbHeight(mqueryHeight(context, .02)),
-            eText1("Kindly select the course you' would like to take",
+            eText1("Kindly select the courses you' would like to take",
                 mqueryHeight(context, .017)),
             sbHeight(mqueryHeight(context, .18)),
             getCourseCard(),
@@ -66,7 +66,7 @@ class _CoursebyidState extends State<Coursebyid> {
                 fontWeight: FontWeight.w600,
                 fontSize: mqueryHeight(context, .018), onT: () {
               ethAlert(context,
-                  "Enrollment to ${widget.title} currently unavailable at the moment, please try again later");
+                  "Enrollment into ${widget.title} currently unavailable at the moment, please try again later");
               //   mynextScreen(context, Verify());
             }),
           ],
