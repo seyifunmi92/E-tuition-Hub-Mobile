@@ -2,43 +2,45 @@
 
 import 'dart:convert';
 
-Allcourses allcoursesFromJson(String str) => Allcourses.fromJson(json.decode(str));
+SingleCourse singleCourseFromJson(String str) => SingleCourse.fromJson(json.decode(str));
 
-String allcoursesToJson(Allcourses data) => json.encode(data.toJson());
+String singleCourseToJson(SingleCourse data) => json.encode(data.toJson());
 
-class Allcourses {
+class SingleCourse {
     String status;
     int code;
-    List<Datum> data;
+    Data data;
     String message;
 
-    Allcourses({
+    SingleCourse({
         required this.status,
         required this.code,
         required this.data,
         required this.message,
     });
 
-    factory Allcourses.fromJson(Map<String, dynamic> json) => Allcourses(
+    factory SingleCourse.fromJson(Map<String, dynamic> json) => SingleCourse(
         status: json["status"],
         code: json["code"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: Data.fromJson(json["data"]),
         message: json["message"],
     );
 
     Map<String, dynamic> toJson() => {
         "status": status,
         "code": code,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": data.toJson(),
         "message": message,
     };
 }
 
-class Datum {
+class Data {
+    dynamic averageRating;
+    int numberOfCourseModules;
     int id;
     String name;
     int categoryId;
-    int subCategoryId;
+    int subcategoryId;
     String description;
     String image;
     String price;
@@ -46,15 +48,18 @@ class Datum {
     String createdBy;
     DateTime createdAt;
     DateTime updatedAt;
-    dynamic deletedAt;
     CourseCategories courseCategories;
     CourseCategories courseSubCategories;
+    List<dynamic> courseModules;
+    List<dynamic> courseReviews;
 
-    Datum({
+    Data({
+        this.averageRating,
+        required this.numberOfCourseModules,
         required this.id,
         required this.name,
         required this.categoryId,
-        required this.subCategoryId,
+        required this.subcategoryId,
         required this.description,
         required this.image,
         required this.price,
@@ -62,16 +67,19 @@ class Datum {
         required this.createdBy,
         required this.createdAt,
         required this.updatedAt,
-        this.deletedAt,
         required this.courseCategories,
         required this.courseSubCategories,
+        required this.courseModules,
+        required this.courseReviews,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        averageRating: json["averageRating"],
+        numberOfCourseModules: json["numberOfCourseModules"],
         id: json["id"],
         name: json["name"],
-        categoryId: json["categoryId"] ?? "",
-        subCategoryId: json["subCategoryId"],
+        categoryId: json["categoryId"],
+        subcategoryId: json["subcategoryId"],
         description: json["description"],
         image: json["image"],
         price: json["price"],
@@ -79,16 +87,19 @@ class Datum {
         createdBy: json["createdBy"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"],
         courseCategories: CourseCategories.fromJson(json["courseCategories"]),
         courseSubCategories: CourseCategories.fromJson(json["courseSubCategories"]),
+        courseModules: List<dynamic>.from(json["courseModules"].map((x) => x)),
+        courseReviews: List<dynamic>.from(json["courseReviews"].map((x) => x)),
     );
 
     Map<String, dynamic> toJson() => {
+        "averageRating": averageRating,
+        "numberOfCourseModules": numberOfCourseModules,
         "id": id,
         "name": name,
         "categoryId": categoryId,
-        "subCategoryId": subCategoryId,
+        "subcategoryId": subcategoryId,
         "description": description,
         "image": image,
         "price": price,
@@ -96,9 +107,10 @@ class Datum {
         "createdBy": createdBy,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
-        "deletedAt": deletedAt,
         "courseCategories": courseCategories.toJson(),
         "courseSubCategories": courseSubCategories.toJson(),
+        "courseModules": List<dynamic>.from(courseModules.map((x) => x)),
+        "courseReviews": List<dynamic>.from(courseReviews.map((x) => x)),
     };
 }
 

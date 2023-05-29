@@ -15,14 +15,11 @@ import 'package:etuition/models/onboarding.dart';
 import 'package:etuition/navigators/navigations.dart';
 import 'package:etuition/providers/functions.dart';
 import 'package:etuition/providers/validationbloc.dart';
+import 'package:etuition/screens/auth/login.dart';
 import 'package:etuition/screens/auth/verify.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_alt/modal_progress_hud_alt.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -60,7 +57,15 @@ class _CreateAccountState extends State<CreateAccount> {
               children: [
                 eText1("Create Account", mqueryHeight(context, .025),
                     fontweight: FontWeight.w900, color: ethcolor.headingblack),
-                sbHeight(mqueryHeight(context, .02)),
+                sbHeight(mqueryHeight(context, .01)),
+                InkWell(
+                    onTap: () {
+                      mynextScreen(context, Login());
+                    },
+                    child: eText1(
+                        "Have an account? Login", mqueryHeight(context, .017),
+                        color: Color(0xffCAA74E))),
+                sbHeight(mqueryHeight(context, .01)),
                 eText1("Please fill up your details to help know you better",
                     mqueryHeight(context, .017)),
                 sbHeight(mqueryHeight(context, .03)),

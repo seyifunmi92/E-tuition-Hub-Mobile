@@ -35,7 +35,7 @@ class AccountServices extends ChangeNotifier {
   String resend = "/api/auth//auth/resend-verification";
   String reset = "/api/auth//auth/reset-password";
   String login = "/api/auth//auth/login";
-  String validatereset = "api/auth/validate-reset-password";
+  String validatereset = "/api/auth//auth/validate-reset-password";
 
   Future<String> createCustomer(
       String email, String password, String firstName) async {
@@ -190,6 +190,7 @@ class AccountServices extends ChangeNotifier {
       };
       print(xData);
       var url = Uri.parse(BaseUrl + validatereset);
+      print(url);
       final xResponse = await http.post(url,
           body: jsonEncode(xData), headers: sessionHeaders);
       if (xResponse.statusCode == 200) {

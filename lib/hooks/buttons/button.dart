@@ -24,7 +24,7 @@ Widget straightButton(
           color: color,
           borderRadius: BorderRadius.circular(radius),
           border: showBorder == true
-              ? Border.all(color: ethcolor.primaryColor)
+              ? Border.all(color: ethcolor.primaryColor.withOpacity(.3))
               : null),
       child: Center(
           child: Text(

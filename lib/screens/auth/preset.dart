@@ -12,6 +12,7 @@ import 'package:etuition/hooks/text/textwidget.dart';
 import 'package:etuition/models/onboarding.dart';
 import 'package:etuition/providers/functions.dart';
 import 'package:etuition/screens/auth/login.dart';
+import 'package:etuition/screens/auth/passs.dart';
 import 'package:etuition/screens/auth/psuccess.dart';
 import 'package:etuition/screens/auth/resetpassword.dart';
 import 'package:flutter/material.dart';
@@ -135,10 +136,11 @@ class _PresetState extends State<Preset> {
   }
 
   xSuccessotp(dynamic x) {
+    print(x);
     setState(() {
       Provider.of<AccountServices>(context, listen: false).isLoading = false;
     });
-    mynextScreen(context, PSuccess());
+    mynextScreen(context, Passss());
     toast(
       x["message"],
     );

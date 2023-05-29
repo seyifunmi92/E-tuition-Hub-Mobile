@@ -92,6 +92,7 @@ class _AllCoursesState extends State<AllCourses> {
               image: xc.image,
               title: xc.name,
               date: DateFormat("dd MMMM yyyy").format(xc.updatedAt),
+              id: xc.id,
             ));
       },
       child: Padding(
@@ -116,7 +117,7 @@ class _AllCoursesState extends State<AllCourses> {
 
   _getAllCourses() {
     Provider.of<courseServices>(context, listen: false)
-        .getAllCourseCategories()
+        .getCourses()
         .then((value) => output(value));
   }
 
